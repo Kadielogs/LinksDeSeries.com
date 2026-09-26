@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mis sitios</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px 25px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+            font-size: 32px;
+        }
+
+        header p {
+            margin: 0;
+            color: #94a3b8;
+        }
+
+        /* CUADRÍCULA */
+        .grid {
+            width: min(1100px, 92%);
+            margin: 20px auto 50px;
+
+            display: grid;
+
+            /* Se adapta automáticamente al tamaño de pantalla */
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+
+            gap: 20px;
+        }
+
+        /* TARJETA / CUADRADO */
+        .tarjeta {
+            min-height: 180px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+
+            text-decoration: none;
+            color: white;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-6px);
+            background: #263449;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        /* ICONO */
+        .icono {
+            width: 70px;
+            height: 70px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin-bottom: 15px;
+
+            border-radius: 18px;
+
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #7c3aed
+            );
+
+            font-size: 30px;
+        }
+
+        .nombre {
+            font-size: 17px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        @media (max-width: 500px) {
+            header h1 {
+                font-size: 26px;
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .tarjeta {
+                min-height: 150px;
+                padding: 15px;
+            }
+
+            .icono {
+                width: 55px;
+                height: 55px;
+                font-size: 24px;
+            }
+
+            .nombre {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Mis sitios</h1>
+        <p>Selecciona un sitio para entrar</p>
+    </header>
+
+    <main class="grid" id="grid"></main>
+
+
+    <script>
+
+        /*
+        ==================================================
+        AÑADIR NUEVOS SITIOS
+        ==================================================
+
+        Solo copia esto:
+
+        {
+            nombre: "Nombre del sitio",
+            url: "https://ejemplo.com/",
+            icono: "🌐"
+        },
+
+        y cambia los datos.
+
+        ==================================================
+        */
+
+        const sitios = [
+
+            {
+                nombre: "Malcolm Latino",
+                url: "https://malcolmlatinos.blogspot.com/",
+                icono: "📺"
+            },
+
+            {
+                nombre: "Another TV Sub",
+                url: "https://anothertvsub.blogspot.com/",
+                icono: "📺"
+            },
+
+            {
+                nombre: "Un Show Más TV Latino",
+                url: "https://unshowmastvlatino.blogspot.com/",
+                icono: "⭐"
+            },
+
+            {
+                nombre: "Hora de Aventura TV Latino",
+                url: "https://horadeaventuratvlatino.blogspot.com/",
+                icono: "⚔️"
+            },
+
+            {
+                nombre: "iCarly TV Latino",
+                url: "https://icarlytvlatino.blogspot.com/",
+                icono: "📱"
+            },
+
+            {
+                nombre: "Drake y Josh TV Latino",
+                url: "https://drakeyjoshtvlatino.blogspot.com/",
+                icono: "🎬"
+            },
+
+            {
+                nombre: "Los Simpson TV Latino",
+                url: "https://lossimpson-tvlatino.blogspot.com/",
+                icono: "🍩"
+            },
+
+            {
+                nombre: "Search Blogspot Site",
+                url: "https://searchblogspotsite.blogspot.com/",
+                icono: "🔎"
+            }
+
+        ];
+
+
+        /*
+        ==================================================
+        GENERAR LAS TARJETAS AUTOMÁTICAMENTE
+        ==================================================
+        */
+
+        const grid = document.getElementById("grid");
+
+        sitios.forEach(sitio => {
+
+            const tarjeta = document.createElement("a");
+
+            tarjeta.className = "tarjeta";
+
+            tarjeta.href = sitio.url;
+
+            tarjeta.target = "_blank";
+
+            tarjeta.rel = "noopener noreferrer";
+
+            tarjeta.innerHTML = `
+                <div class="icono">
+                    ${sitio.icono}
+                </div>
+
+                <div class="nombre">
+                    ${sitio.nombre}
+                </div>
+            `;
+
+            grid.appendChild(tarjeta);
+
+        });
+
+    </script>
+
+</body>
+</html>
